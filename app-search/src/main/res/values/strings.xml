@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="position_keywords">Должность, ключевые слова</string>
+    <string name="respond_text">Откликнуться</string>
+    <string name="published_text">"Опубликовано "</string>
+    <string name="now_looking_amount_ppl">Сейчас просматривает %1$s человек</string>
+    <string name="now_looking_people">Сейчас просматривает %1$s %2$s</string>
+    <string name="required_exp">Требуемый опыт: %1$s</string>
+    <string name="people_repl">%1$s %2$s уже откликнулось</string>
+    <string name="green_box_looking_ppl">%1$s %2$s сейчас смотрят</string>
+    <string name="your_duties">Ваши задачи</string>
+    <string name="ask_question">Задайте вопрос работодателю</string>
+    <string name="recieve_with_repl">Он получит его с откликом на вакансию</string>
+</resources>
