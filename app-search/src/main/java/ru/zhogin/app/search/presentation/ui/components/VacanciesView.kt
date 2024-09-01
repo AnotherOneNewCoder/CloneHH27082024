@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.search.R
+import ru.zhogin.app.search.common.convertData
 import ru.zhogin.app.search.common.peopleRuEnding
 import ru.zhogin.app.search.common.vacanciesRuEnding
 import ru.zhogin.app.search.domain.models.Vacancy
@@ -50,6 +51,7 @@ internal fun VacanciesView(
     listVacancies: List<Vacancy>,
     showAll: Boolean,
     onShowAllVacancy: () -> Unit,
+    showVacancyPage: (Vacancy) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -57,7 +59,11 @@ internal fun VacanciesView(
             .padding(horizontal = 21.dp)
     ) {
         items(if (!showAll) 3 else listVacancies.size) { count ->
-            VacancyView(listVacancies[count])
+            VacancyView(
+                vacancy = listVacancies[count],
+                showVacancyPage = {
+                    showVacancyPage(it)
+                })
             Spacer(modifier = Modifier.height(if (showAll) 11.dp else 21.dp))
         }
         if (!showAll) {
@@ -106,12 +112,21 @@ private fun ShowAllVacancies(
 }
 
 @Composable
-private fun VacancyView(vacancy: Vacancy) {
+private fun VacancyView(
+    vacancy: Vacancy,
+    showVacancyPage: (Vacancy) -> Unit,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(11.dp))
-            .background(Grey1),
+            .background(Grey1)
+            .clickable(
+                onClick = {
+                    showVacancyPage(vacancy)
+                }
+            )
+        ,
     ) {
         Box(
             modifier = Modifier
@@ -182,7 +197,7 @@ private fun VacancyView(vacancy: Vacancy) {
             }
             Spacer(modifier = Modifier.height(13.dp))
             Text(
-                text = stringResource(R.string.published_text) + vacancy.publishedDate,
+                text = stringResource(R.string.published_text) + convertData(vacancy.publishedDate) ,
                 style = MaterialTheme.typography.Text1,
                 color = Grey3
             )

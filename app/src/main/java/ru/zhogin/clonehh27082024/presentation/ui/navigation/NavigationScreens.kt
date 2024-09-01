@@ -7,4 +7,5 @@ sealed class NavigationScreens(val route: String) {
     data object ResponseScreen: NavigationScreens("response_screen")
     data object MessagesScreen: NavigationScreens("messages_screen")
     data object ProfileScreen: NavigationScreens("profile_screen")
+    data object VacancyScreen :NavigationScreens("vacancy_screen")
 }

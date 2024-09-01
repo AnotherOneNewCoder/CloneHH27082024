@@ -11,4 +11,6 @@
     <string name="your_duties">Ваши задачи</string>
     <string name="ask_question">Задайте вопрос работодателю</string>
     <string name="recieve_with_repl">Он получит его с откликом на вакансию</string>
+    <string name="vacancies_for_you">Вакансии для вас</string>
+    <string name="by_compliance">По соответствию</string>
 </resources>

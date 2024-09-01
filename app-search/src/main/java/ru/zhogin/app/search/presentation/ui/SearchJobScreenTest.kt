@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.zhogin.app.search.R
 import ru.zhogin.app.search.common.vacanciesRuEnding
+import ru.zhogin.app.search.domain.models.ServerReply
 import ru.zhogin.app.search.domain.models.Vacancy
 import ru.zhogin.app.search.presentation.ui.components.OffersView
 import ru.zhogin.app.search.presentation.ui.components.SearchAndFilters
@@ -37,27 +38,14 @@ import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.Text1
 import ru.zhogin.app.uikit.Title2
 
-@Composable
-fun SearchJobScreen(
-    modifier: Modifier,
-    showVacancyPage: (Vacancy) -> Unit,
-) {
-    SearchJobScreen(
-        modifier = modifier,
-        viewModel = hiltViewModel(),
-        showVacancyPage = showVacancyPage
-    )
-}
+
 
 @Composable
-internal fun SearchJobScreen(
+fun SearchJobScreenTest(
     modifier: Modifier,
-    viewModel: SearchViewModel,
+    serverReply: ServerReply,
     showVacancyPage: (Vacancy) -> Unit,
 ) {
-
-    val serverReply = viewModel.stateServerReply.collectAsState()
-
     var showAll by rememberSaveable {
         mutableStateOf(false)
     }
@@ -76,7 +64,7 @@ internal fun SearchJobScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
         if (!showAll) {
-            serverReply.value?.data?.offers?.let {
+            serverReply.offers.let {
                 OffersView(listOffers = it)
                 Spacer(modifier = Modifier.height(43.dp))
             }
@@ -86,11 +74,9 @@ internal fun SearchJobScreen(
                 modifier = Modifier.padding(start = 21.dp)
             )
             Spacer(modifier = Modifier.height(21.dp))
-            serverReply.value?.data?.vacancies?.let {
-                VacanciesView(listVacancies = it, showAll = showAll, onShowAllVacancy = {
-                    showAll = true
-                }, showVacancyPage = showVacancyPage)
-            }
+            VacanciesView(listVacancies = serverReply.vacancies, showAll = showAll, onShowAllVacancy = {
+                showAll = true
+            }, showVacancyPage = showVacancyPage)
         } else {
             Row(
                 modifier = Modifier
@@ -99,8 +85,8 @@ internal fun SearchJobScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(
-                    text = "${serverReply.value?.data?.vacancies?.size} ${
-                        serverReply.value?.data?.vacancies?.size?.let {
+                    text = "${serverReply.vacancies.size} ${
+                        serverReply.vacancies.size.let {
                             vacanciesRuEnding(
                                 it
                             )
@@ -124,14 +110,12 @@ internal fun SearchJobScreen(
                 }
             }
             Spacer(modifier = Modifier.height(21.dp))
-            serverReply.value?.data?.vacancies?.let {
-                VacanciesView(
-                    listVacancies = it, showAll = showAll, onShowAllVacancy = {
-                        showAll = true
-                    },
-                    showVacancyPage = showVacancyPage
-                )
-            }
+            VacanciesView(
+                listVacancies = serverReply.vacancies, showAll = showAll, onShowAllVacancy = {
+                    showAll = true
+                },
+                showVacancyPage = showVacancyPage
+            )
         }
     }
 }

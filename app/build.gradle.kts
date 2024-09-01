@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation)
     implementation(libs.dagger.hilt.android)
+    implementation(libs.hilt.navigation)
     kapt(libs.dagger.hilt.compiler)
 
     implementation(project(":app-uikit"))

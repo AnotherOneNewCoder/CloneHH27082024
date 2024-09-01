@@ -14,10 +14,32 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.zhogin.app.search.common.RequestResult
 import ru.zhogin.app.search.domain.GetAllDataUseCase
+import ru.zhogin.app.search.domain.models.Address
+import ru.zhogin.app.search.domain.models.Experience
 import ru.zhogin.app.search.domain.models.Offer
+import ru.zhogin.app.search.domain.models.Salary
 import ru.zhogin.app.search.domain.models.ServerReply
+import ru.zhogin.app.search.domain.models.Vacancy
 import ru.zhogin.app.search.presentation.state.AllNetworkDataState
 import javax.inject.Inject
+
+private val emptyVacancy = Vacancy(
+    address = Address(
+        house = "", street = "", town = ""
+    ),
+    company = "",
+    experience = Experience(
+        previewText = "", text = ""
+    ),
+    title = "",
+    schedules = listOf("", ""),
+    salary = Salary(full = ""),
+    responsibilities = "",
+    questions = listOf("", ""),
+    publishedDate = "",
+    isFavorite = true,
+    id = ""
+)
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
@@ -32,68 +54,29 @@ class SearchViewModel @Inject constructor(
     private val _stateServerReply = MutableStateFlow<RequestResult<ServerReply>?>(null)
     val stateServerReply = _stateServerReply.asStateFlow()
 
-//    val stateServerReply: StateFlow<StateServerReply> = repository()
-//        .map { it.toStateServerReply() }
-//        .stateIn(viewModelScope, SharingStarted.Lazily,StateServerReply.None)
+    private val _cachedVacancy = MutableStateFlow<Vacancy>(emptyVacancy)
+    val cachedVacancy = _cachedVacancy.asStateFlow()
+
 
     init {
         getAllRemoteData()
     }
 
-    fun getAllRemoteData() {
+    private fun getAllRemoteData() {
         viewModelScope.launch {
             _stateServerReply.value = repository.invoke()
         }
     }
-
-
-//    private fun getAllRemoteData() {
-//        viewModelScope.launch {
-//
-//            repository().collectLatest { result ->
-//                when(result) {
-//                    is RequestResult.Success -> {
-//                        _state.update {
-//                            _state.value?.copy(
-//                                serverReply = result.data,
-//                                loading = false,
-//                                error = false,
-//                            )
-//                        }
-//                    }
-//
-//                    is RequestResult.Error -> {
-//                        _state.update {
-//                            _state.value?.copy(
-//                                loading = false,
-//                                error = false,
-//                            )
-//                        }
-//                    }
-//                    is RequestResult.InProgress -> {
-//                        _state.update {
-//                            _state.value?.copy(loading = true)
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
-
-
-//    }
-}
-private fun RequestResult<ServerReply>.toStateServerReply() : StateServerReply {
-    return when (this) {
-        is RequestResult.Error -> StateServerReply.Error(data)
-        is RequestResult.InProgress -> StateServerReply.Loading(data)
-        is RequestResult.Success -> StateServerReply.Success(data)
+    fun saveVacancyInCache(vacancy: Vacancy) {
+        viewModelScope.launch {
+            _cachedVacancy.value = vacancy
+        }
     }
-}
 
-sealed class StateServerReply(val serverReply: ServerReply?) {
-    data object None : StateServerReply(serverReply = null)
-    class Loading(serverReply: ServerReply? = null) : StateServerReply(serverReply)
-    class Error(serverReply: ServerReply? = null) : StateServerReply(serverReply)
-    class Success(serverReply: ServerReply) : StateServerReply(serverReply)
+    fun clearVacancyCache() {
+        _cachedVacancy.value = emptyVacancy
+    }
+
+
+
 }

@@ -12,18 +12,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.zhogin.app.enterance.presentation.ui.navigation.EntranceFeature
-import ru.zhogin.app.search.presentation.ui.SearchJobScreen
+import ru.zhogin.app.search.domain.models.ServerReply
+import ru.zhogin.app.search.presentation.ui.SearchJobScreenTest
+import ru.zhogin.app.search.presentation.ui.VacancyPage
+import ru.zhogin.app.search.presentation.viewmodel.SearchViewModel
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Title1
 
@@ -31,8 +34,12 @@ import ru.zhogin.app.uikit.Title1
 internal fun NavigationGraph(
     navController : NavHostController,
     paddingValues: PaddingValues,
+    searchViewModel: SearchViewModel,
+    serverReply: ServerReply,
 ) {
 
+
+    val vacancy = searchViewModel.cachedVacancy.collectAsState()
 
     NavHost(navController = navController, startDestination = NavigationScreens.EntranceFeature.route,
         enterTransition = {
@@ -63,7 +70,14 @@ internal fun NavigationGraph(
                 })
         }
         composable(NavigationScreens.SearchScreen.route) {
-            SearchJobScreen(modifier = Modifier.padding(paddingValues))
+            SearchJobScreenTest(
+                modifier = Modifier.padding(paddingValues),
+                serverReply = serverReply,
+                showVacancyPage = {
+                    searchViewModel.saveVacancyInCache(it)
+                    navController.navigate(NavigationScreens.VacancyScreen.route)
+                }
+            )
         }
         composable(NavigationScreens.FavouriteScreen.route) {
             SearchScreen(modifier = Modifier.padding(paddingValues))
@@ -77,6 +91,18 @@ internal fun NavigationGraph(
         }
         composable(NavigationScreens.ProfileScreen.route) {
             SearchScreen(modifier = Modifier.padding(paddingValues))
+        }
+        composable(NavigationScreens.VacancyScreen.route) {
+            VacancyPage(
+                modifier = Modifier.padding(paddingValues),
+                vacancy = vacancy.value,
+                onClickBack = {
+                    navController.navigateUp()
+                    searchViewModel.clearVacancyCache()
+                              },
+                onAddToFavourite = {  }) {
+
+            }
         }
     }
 }
