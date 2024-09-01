@@ -13,4 +13,8 @@
     <string name="recieve_with_repl">Он получит его с откликом на вакансию</string>
     <string name="vacancies_for_you">Вакансии для вас</string>
     <string name="by_compliance">По соответствию</string>
+    <string name="add_accompanying">Добавить сопроводительное</string>
+    <string name="hardcore_cv_add">Резюме для отклика</string>
+    <string name="harcore_job_position">UI/UX дизайнер</string>
+    <string name="your_acc_message">Ваше сопроводительное письмо</string>
 </resources>

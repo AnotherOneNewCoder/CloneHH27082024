@@ -25,6 +25,10 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,6 +41,8 @@ import ru.zhogin.app.search.R
 import ru.zhogin.app.search.common.peopleRuEnding
 import ru.zhogin.app.search.common.scheduleFromList
 import ru.zhogin.app.search.domain.models.Vacancy
+import ru.zhogin.app.search.presentation.ui.dialog.FirstReplyDialog
+import ru.zhogin.app.search.presentation.ui.dialog.SecondReplyDialog
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.ButtonText1
@@ -57,9 +63,34 @@ fun VacancyPage(
     vacancy: Vacancy,
     onClickBack: () -> Unit,
     onAddToFavourite: () -> Unit,
-    toRespondOnVacancy: () -> Unit,
+    //toRespondOnVacancy: () -> Unit,
 ) {
 
+    var openFirstDialog by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+    var openSecondDialog by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+    var questionText by rememberSaveable {
+        mutableStateOf("")
+    }
+
+    when(openFirstDialog) {
+        true -> FirstReplyDialog {
+            openFirstDialog = false
+        }
+        else -> {}
+    }
+
+    when(openSecondDialog) {
+        true -> SecondReplyDialog(text = questionText) {
+            openSecondDialog = false
+        }
+        else -> {}
+    }
 
     Column(
         modifier = modifier
@@ -152,12 +183,20 @@ fun VacancyPage(
                 )
                 Spacer(modifier = Modifier.height(21.dp))
                 for (question in vacancy.questions) {
-                    QuestionBox(string = question)
+                    QuestionBox(
+                        string = question,
+                        onClickQuestion = {
+                            questionText = it
+                            openSecondDialog = true
+                        }
+                    )
                     Spacer(modifier = Modifier.height(10.5.dp))
                 }
                 Spacer(modifier = Modifier.height(10.5.dp))
                 RespondVacancy(
-                    toRespondOnVacancy = toRespondOnVacancy,
+                    toRespondOnVacancy = {
+                        openFirstDialog = true
+                    },
                 )
             }
         }
@@ -165,7 +204,7 @@ fun VacancyPage(
 }
 
 @Composable
-private fun RespondVacancy(
+internal fun RespondVacancy(
     toRespondOnVacancy: () -> Unit,
 ) {
     Card(
@@ -199,11 +238,18 @@ private fun RespondVacancy(
 @Composable
 private fun QuestionBox(
     string: String,
+    onClickQuestion: (String) -> Unit,
 ) {
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(67.dp))
-            .background(Grey2),
+            .background(Grey2)
+            .clickable(
+                onClick = {
+                    onClickQuestion(string)
+                }
+            )
+        ,
     ) {
         Text(
             text = string,
@@ -329,10 +375,12 @@ private fun IconsRow(
             painter = painterResource(id = R.drawable.icon_back),
             contentDescription = "back",
             modifier = Modifier
-                .size(32.dp)
+                .size(19.dp)
                 .clickable(
                     onClick = onClickBack
-                ),
+                )
+                .padding(top = 6.dp)
+            ,
             tint = White,
         )
         Row {

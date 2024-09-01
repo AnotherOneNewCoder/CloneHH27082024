@@ -100,9 +100,9 @@ internal fun NavigationGraph(
                     navController.navigateUp()
                     searchViewModel.clearVacancyCache()
                               },
-                onAddToFavourite = {  }) {
+                onAddToFavourite = {  })
 
-            }
+
         }
     }
 }
