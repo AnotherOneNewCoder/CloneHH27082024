@@ -1,13 +1,13 @@
-package ru.zhogin.app.search.domain.models
+package ru.zhogin.app.search.data.network.models.vacancy
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Vacancy(
+data class VacancyDto(
     @SerialName("address")
-    val address: Address,
+    val address: AddressDto,
     @SerialName("appliedNumber")
     val appliedNumber: Int? = null,
     @SerialName("company")
@@ -15,7 +15,7 @@ data class Vacancy(
     @SerialName("description")
     val description: String? = null,
     @SerialName("experience")
-    val experience: Experience,
+    val experience: ExperienceDto,
     @SerialName("id")
     val id: String,
     @SerialName("isFavorite")
@@ -29,7 +29,7 @@ data class Vacancy(
     @SerialName("responsibilities")
     val responsibilities: String,
     @SerialName("salary")
-    val salary: Salary,
+    val salary: SalaryDto,
     @SerialName("schedules")
     val schedules: List<String>,
     @SerialName("title")

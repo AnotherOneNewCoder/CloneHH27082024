@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favourite_text">Избранное</string>
+    <string name="amount_fav_vac">%1$s %2$s</string>
+    <string name="now_looking_people">Сейчас просматривает %1$s %2$s</string>
+</resources>

@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 import ru.zhogin.app.search.R
 import ru.zhogin.app.search.common.peopleRuEnding
 import ru.zhogin.app.search.common.scheduleFromList
-import ru.zhogin.app.search.domain.models.Vacancy
+import ru.zhogin.app.search.domain.models.vacancy.Vacancy
 import ru.zhogin.app.search.presentation.ui.dialog.FirstReplyDialog
 import ru.zhogin.app.search.presentation.ui.dialog.SecondReplyDialog
 import ru.zhogin.app.uikit.Black
@@ -62,7 +62,7 @@ fun VacancyPage(
     modifier: Modifier,
     vacancy: Vacancy,
     onClickBack: () -> Unit,
-    onAddToFavourite: () -> Unit,
+    onAddToFavourite: (Vacancy) -> Unit,
     //toRespondOnVacancy: () -> Unit,
 ) {
 
@@ -365,7 +365,7 @@ private fun GreenBox(
 private fun IconsRow(
     vacancy: Vacancy,
     onClickBack: () -> Unit,
-    onAddToFavourite: () -> Unit,
+    onAddToFavourite: (Vacancy) -> Unit,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -405,7 +405,7 @@ private fun IconsRow(
                 modifier = Modifier
                     .size(32.dp)
                     .clickable(
-                        onClick = onAddToFavourite
+                        onClick = {onAddToFavourite(vacancy) }
                     ),
                 tint = if (vacancy.isFavorite) Blue else White,
             )

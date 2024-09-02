@@ -1,6 +1,6 @@
 package ru.zhogin.app.search.common
 
-internal fun vacanciesRuEnding(amount: Int) : String {
+fun vacanciesRuEnding(amount: Int) : String {
     return if (amount.toString().endsWith("11")) "вакансий"
     else if (amount.toString().endsWith("12")) "вакансий"
     else if (amount.toString().endsWith("13")) "вакансий"
@@ -11,7 +11,7 @@ internal fun vacanciesRuEnding(amount: Int) : String {
     else if (amount.toString().endsWith("4")) "вакансии"
     else "вакансий"
 }
-internal fun peopleRuEnding(amount: Int): String {
+fun peopleRuEnding(amount: Int): String {
     return if (amount.toString().endsWith("11")) "человек"
     else if (amount.toString().endsWith("12")) "человек"
     else if (amount.toString().endsWith("13")) "человек"

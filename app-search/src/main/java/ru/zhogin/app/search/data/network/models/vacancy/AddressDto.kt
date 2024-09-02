@@ -1,11 +1,11 @@
-package ru.zhogin.app.search.domain.models
+package ru.zhogin.app.search.data.network.models.vacancy
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Address(
+data class AddressDto(
     @SerialName("house")
     val house: String,
     @SerialName("street")

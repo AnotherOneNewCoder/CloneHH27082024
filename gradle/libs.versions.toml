@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.1"
-kotlin = "1.9.0"
+kotlin = "2.0.20"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -17,7 +17,7 @@ javax-inject = "1"
 hilt = "1.2.0"
 ktor = "2.3.0"
 room = "2.6.1"
-ksp = "1.9.22-1.0.17"
+ksp = "2.0.20-1.0.24"
 gson_version = "2.10.1"
 
 [libraries]
@@ -67,4 +67,6 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 

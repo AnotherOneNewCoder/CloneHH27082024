@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(project(":app-uikit"))
+    implementation(project(":app-search"))
     ksp(libs.androidx.room.compiler)
     api(libs.androidx.room.ktx)
     implementation(libs.dagger.hilt.android)

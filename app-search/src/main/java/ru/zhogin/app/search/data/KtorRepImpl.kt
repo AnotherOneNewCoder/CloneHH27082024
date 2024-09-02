@@ -6,14 +6,14 @@ import io.ktor.client.request.get
 import io.ktor.client.request.url
 
 import ru.zhogin.app.search.domain.KtorRep
-import ru.zhogin.app.search.domain.Resource
-import ru.zhogin.app.search.domain.models.ServerReply
+import ru.zhogin.app.search.common.Resource
+import ru.zhogin.app.search.data.network.models.ServerReplyDto
 import javax.inject.Inject
 
 class KtorRepImpl @Inject constructor(
     private val httpClient: HttpClient
 ) : KtorRep {
-    override suspend fun getAllRemoteData(): Resource<ServerReply> {
+    override suspend fun getAllRemoteData(): Resource<ServerReplyDto> {
         return try {
             Resource.Success(
                 httpClient.get {

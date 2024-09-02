@@ -36,6 +36,4 @@ data class VacancyDbo(
     val schedules: String,
     @ColumnInfo("title")
     val title: String,
-    @ColumnInfo("shown_favourite")
-    val isShowInFavourite: Boolean,
 )

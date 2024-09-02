@@ -1,6 +1,9 @@
 package ru.zhogin.app.search.common
 
-import ru.zhogin.app.search.domain.Resource
+import ru.zhogin.app.search.domain.models.offer.Offer
+import ru.zhogin.app.search.domain.models.vacancy.Vacancy
+import ru.zhogin.app.search.presentation.ui.state.StateOffers
+import ru.zhogin.app.search.presentation.ui.state.StateVacancies
 
 sealed class RequestResult<out E : Any>(open val data: E? = null) {
 
@@ -17,17 +20,27 @@ fun <I : Any, O : Any> RequestResult<I>.map(mapper: (I) -> O): RequestResult<O> 
     }
 }
 
-internal fun <T : Any> Result<T>.toRequestResult(): RequestResult<T> {
-    return when {
-        isSuccess -> RequestResult.Success(getOrThrow())
-        isFailure -> RequestResult.Error()
-        else -> error("Impossible branch")
-    }
-}
+
 internal fun <T : Any> Resource<T>.toRequestResult() : RequestResult<T> {
     return when(this) {
         is Resource.Failure -> RequestResult.Error(data)
         is Resource.Loading -> RequestResult.InProgress(data)
         is Resource.Success -> RequestResult.Success(data)
+    }
+}
+
+internal fun RequestResult<List<Offer>>.toStateOffers() : StateOffers {
+    return when(this) {
+        is RequestResult.Error -> StateOffers.Error(data)
+        is RequestResult.InProgress -> StateOffers.Loading(data)
+        is RequestResult.Success -> StateOffers.Success(data)
+    }
+}
+
+fun RequestResult<List<Vacancy>>.toStateVacancies() : StateVacancies {
+    return when(this) {
+        is RequestResult.Error -> StateVacancies.Error(data)
+        is RequestResult.InProgress -> StateVacancies.Loading(data)
+        is RequestResult.Success -> StateVacancies.Success(data)
     }
 }

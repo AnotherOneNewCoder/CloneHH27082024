@@ -34,7 +34,7 @@ import ru.zhogin.app.search.R
 import ru.zhogin.app.search.common.convertData
 import ru.zhogin.app.search.common.peopleRuEnding
 import ru.zhogin.app.search.common.vacanciesRuEnding
-import ru.zhogin.app.search.domain.models.Vacancy
+import ru.zhogin.app.search.domain.models.vacancy.Vacancy
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.ButtonText1
 import ru.zhogin.app.uikit.ButtonText2
@@ -52,6 +52,7 @@ internal fun VacanciesView(
     showAll: Boolean,
     onShowAllVacancy: () -> Unit,
     showVacancyPage: (Vacancy) -> Unit,
+    showOrHideInFavourite: (Vacancy) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -63,7 +64,9 @@ internal fun VacanciesView(
                 vacancy = listVacancies[count],
                 showVacancyPage = {
                     showVacancyPage(it)
-                })
+                },
+                showOrHideInFavourite = showOrHideInFavourite
+            )
             Spacer(modifier = Modifier.height(if (showAll) 11.dp else 21.dp))
         }
         if (!showAll) {
@@ -115,6 +118,7 @@ private fun ShowAllVacancies(
 private fun VacancyView(
     vacancy: Vacancy,
     showVacancyPage: (Vacancy) -> Unit,
+    showOrHideInFavourite: (Vacancy) -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -139,7 +143,12 @@ private fun VacancyView(
                 painter = if (vacancy.isFavorite) painterResource(id = R.drawable.icon_favourite_filled)
                 else painterResource(id = R.drawable.icon_favourite_not_filled),
                 contentDescription = "favourite",
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier
+                    .size(32.dp)
+                    .clickable(
+                        onClick = { showOrHideInFavourite(vacancy) }
+                    )
+                ,
                 tint = if (vacancy.isFavorite) Blue else Grey4
             )
         }

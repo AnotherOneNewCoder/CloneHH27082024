@@ -1,4 +1,4 @@
-package ru.zhogin.app.search.domain
+package ru.zhogin.app.search.common
 
 sealed class Resource<out R : Any>(open val data: R? = null) {
     class Success<R : Any>(override val data: R): Resource<R>(data)

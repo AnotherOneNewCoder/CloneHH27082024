@@ -1,11 +1,11 @@
-package ru.zhogin.app.search.domain.models
+package ru.zhogin.app.search.data.network.models.vacancy
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Salary(
+data class SalaryDto(
     @SerialName("full")
     val full: String,
     @SerialName("short")
