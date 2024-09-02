@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -27,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -55,10 +56,6 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     implementation(libs.hilt.navigation)
     kapt(libs.dagger.hilt.compiler)
-    implementation(libs.logging.interceptor)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.adapters.result)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.javax.inject)
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
@@ -66,6 +63,9 @@ dependencies {
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.serialization)
     implementation(libs.ktor.content.negotiation)
+    implementation(libs.google.code.gson)
+    ksp(libs.androidx.room.compiler)
+    api(libs.androidx.room.ktx)
     implementation(project(":app-uikit"))
 
 }

@@ -1,4 +1,4 @@
-package ru.zhogin.app.search.presentation.ui
+package ru.zhogin.app.search.presentation.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -324,7 +324,7 @@ private fun GreenBox(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+                .padding(start = 10.dp, top = 10.dp, bottom = 10.dp, end = 14.dp)
         ) {
             Text(
                 text = if (applied) stringResource(

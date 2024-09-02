@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavHostController
@@ -32,28 +33,28 @@ internal fun BottomBar(
     ) {
         val items = listOf(
             BottomNavigationItem(
-                title = "Поиск",
+                title = stringResource(R.string.search_bar_text),
                 icon = ImageVector.vectorResource(id = R.drawable.icon_search),
                 route = "search_screen"
             ),
             BottomNavigationItem(
-                title = "Избранное",
+                title = stringResource(R.string.favourite_bar_text),
                 icon = ImageVector.vectorResource(id = R.drawable.icon_favourite),
                 route = "favourite_screen",
                 badgeCount = counter,
             ),
             BottomNavigationItem(
-                title = "Отклики",
+                title = stringResource(R.string.responses_bar_text),
                 icon = ImageVector.vectorResource(id = R.drawable.icon_replies),
                 route = "response_screen"
             ),
             BottomNavigationItem(
-                title = "Сообщения",
+                title = stringResource(R.string.messages_bar_text),
                 icon = ImageVector.vectorResource(id = R.drawable.icon_messages),
                 route = "messages_screen"
             ),
             BottomNavigationItem(
-                title = "Профиль",
+                title = stringResource(R.string.profile_bar_text),
                 icon = ImageVector.vectorResource(id = R.drawable.icon_profile),
                 route = "profile_screen"
             ),

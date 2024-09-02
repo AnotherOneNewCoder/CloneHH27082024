@@ -1,4 +1,4 @@
-package ru.zhogin.app.search.presentation.ui
+package ru.zhogin.app.search.presentation.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -24,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import ru.zhogin.app.search.R
 import ru.zhogin.app.search.common.vacanciesRuEnding
 import ru.zhogin.app.search.domain.models.ServerReply
@@ -32,16 +30,13 @@ import ru.zhogin.app.search.domain.models.Vacancy
 import ru.zhogin.app.search.presentation.ui.components.OffersView
 import ru.zhogin.app.search.presentation.ui.components.SearchAndFilters
 import ru.zhogin.app.search.presentation.ui.components.VacanciesView
-import ru.zhogin.app.search.presentation.viewmodel.SearchViewModel
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.Text1
 import ru.zhogin.app.uikit.Title2
 
-
-
 @Composable
-fun SearchJobScreenTest(
+fun SearchJobScreen(
     modifier: Modifier,
     serverReply: ServerReply,
     showVacancyPage: (Vacancy) -> Unit,
@@ -74,9 +69,14 @@ fun SearchJobScreenTest(
                 modifier = Modifier.padding(start = 21.dp)
             )
             Spacer(modifier = Modifier.height(21.dp))
-            VacanciesView(listVacancies = serverReply.vacancies, showAll = showAll, onShowAllVacancy = {
-                showAll = true
-            }, showVacancyPage = showVacancyPage)
+            VacanciesView(
+                listVacancies = serverReply.vacancies,
+                showAll = showAll,
+                onShowAllVacancy = {
+                    showAll = true
+                },
+                showVacancyPage = showVacancyPage
+            )
         } else {
             Row(
                 modifier = Modifier

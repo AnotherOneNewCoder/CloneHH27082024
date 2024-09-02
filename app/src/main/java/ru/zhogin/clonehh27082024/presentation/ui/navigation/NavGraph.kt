@@ -23,9 +23,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.zhogin.app.enterance.presentation.ui.navigation.EntranceFeature
+import ru.zhogin.app.messages.presentation.ui.screens.MessagesScreen
+import ru.zhogin.app.profile.presentation.ui.screens.ProfileScreen
+import ru.zhogin.app.responses.presentation.ui.screens.ResponsesScreen
 import ru.zhogin.app.search.domain.models.ServerReply
-import ru.zhogin.app.search.presentation.ui.SearchJobScreenTest
-import ru.zhogin.app.search.presentation.ui.VacancyPage
+import ru.zhogin.app.search.presentation.ui.screens.SearchJobScreen
+import ru.zhogin.app.search.presentation.ui.screens.VacancyPage
 import ru.zhogin.app.search.presentation.viewmodel.SearchViewModel
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Title1
@@ -70,7 +73,7 @@ internal fun NavigationGraph(
                 })
         }
         composable(NavigationScreens.SearchScreen.route) {
-            SearchJobScreenTest(
+            SearchJobScreen(
                 modifier = Modifier.padding(paddingValues),
                 serverReply = serverReply,
                 showVacancyPage = {
@@ -83,14 +86,14 @@ internal fun NavigationGraph(
             SearchScreen(modifier = Modifier.padding(paddingValues))
         }
         composable(NavigationScreens.ResponseScreen.route) {
-            SearchScreen(modifier = Modifier.padding(paddingValues))
+            ResponsesScreen(modifier = Modifier.padding(paddingValues))
         }
         composable(NavigationScreens.MessagesScreen.route) {
-            SearchScreen(modifier = Modifier.padding(paddingValues))
+            MessagesScreen(modifier = Modifier.padding(paddingValues))
 
         }
         composable(NavigationScreens.ProfileScreen.route) {
-            SearchScreen(modifier = Modifier.padding(paddingValues))
+            ProfileScreen(modifier = Modifier.padding(paddingValues))
         }
         composable(NavigationScreens.VacancyScreen.route) {
             VacancyPage(

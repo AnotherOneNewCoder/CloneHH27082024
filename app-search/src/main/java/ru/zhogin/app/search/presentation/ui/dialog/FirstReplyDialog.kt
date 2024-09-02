@@ -36,7 +36,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
 import ru.zhogin.app.search.R
-import ru.zhogin.app.search.presentation.ui.RespondVacancy
+import ru.zhogin.app.search.presentation.ui.screens.RespondVacancy
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.ButtonText1
 import ru.zhogin.app.uikit.Green
