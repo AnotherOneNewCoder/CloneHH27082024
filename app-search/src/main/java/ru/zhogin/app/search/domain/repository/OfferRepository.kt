@@ -21,7 +21,6 @@ import ru.zhogin.app.search.common.toRequestResult
 import ru.zhogin.app.search.data.database.VacanciesAndOffersDatabase
 import ru.zhogin.app.search.data.database.models.offer.OfferDbo
 import ru.zhogin.app.search.data.network.models.offer.OfferDto
-import ru.zhogin.app.search.domain.KtorRep
 import ru.zhogin.app.search.domain.models.offer.Offer
 import javax.inject.Inject
 

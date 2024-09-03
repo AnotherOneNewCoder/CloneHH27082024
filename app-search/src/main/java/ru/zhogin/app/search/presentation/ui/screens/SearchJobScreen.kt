@@ -27,9 +27,9 @@ import ru.zhogin.app.search.R
 import ru.zhogin.app.search.common.vacanciesRuEnding
 import ru.zhogin.app.search.domain.models.offer.Offer
 import ru.zhogin.app.search.domain.models.vacancy.Vacancy
-import ru.zhogin.app.search.presentation.ui.components.OffersView
-import ru.zhogin.app.search.presentation.ui.components.SearchAndFilters
-import ru.zhogin.app.search.presentation.ui.components.VacanciesView
+import ru.zhogin.app.search.presentation.ui.components.search.OffersView
+import ru.zhogin.app.search.presentation.ui.components.search.SearchAndFilters
+import ru.zhogin.app.search.presentation.ui.components.search.VacanciesView
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.Text1

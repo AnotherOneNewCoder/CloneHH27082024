@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import ru.zhogin.app.favourite.domain.GetAllVacanciesFromDataBaseUseCase
-import ru.zhogin.app.favourite.domain.HideOrShowVacancyUseCase
+import ru.zhogin.app.favourite.domain.usecases.GetAllVacanciesFromDataBaseUseCase
+import ru.zhogin.app.favourite.domain.usecases.HideOrShowVacancyUseCase
 import ru.zhogin.app.search.common.toStateVacancies
 import ru.zhogin.app.search.domain.models.vacancy.Vacancy
 import ru.zhogin.app.search.presentation.ui.state.StateVacancies
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavouriteViewModel @Inject constructor(
-    vacancies: GetAllVacanciesFromDataBaseUseCase ,
+    vacancies: GetAllVacanciesFromDataBaseUseCase,
     private val hideOrShowVacancyUseCase: HideOrShowVacancyUseCase
 ) : ViewModel() {
 

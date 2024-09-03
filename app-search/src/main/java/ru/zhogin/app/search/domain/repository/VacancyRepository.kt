@@ -21,7 +21,6 @@ import ru.zhogin.app.search.common.toVacancyDbo
 import ru.zhogin.app.search.data.database.VacanciesAndOffersDatabase
 import ru.zhogin.app.search.data.database.models.vacancy.VacancyDbo
 import ru.zhogin.app.search.data.network.models.vacancy.VacancyDto
-import ru.zhogin.app.search.domain.KtorRep
 import ru.zhogin.app.search.domain.models.vacancy.Vacancy
 import javax.inject.Inject
 

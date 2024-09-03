@@ -1,4 +1,4 @@
-package ru.zhogin.app.search.presentation.ui.components
+package ru.zhogin.app.favourite.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,12 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,15 +25,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import ru.zhogin.app.search.R
+import ru.zhogin.app.favourite.R
 import ru.zhogin.app.search.common.convertData
 import ru.zhogin.app.search.common.peopleRuEnding
-import ru.zhogin.app.search.common.vacanciesRuEnding
 import ru.zhogin.app.search.domain.models.vacancy.Vacancy
 import ru.zhogin.app.uikit.Blue
-import ru.zhogin.app.uikit.ButtonText1
 import ru.zhogin.app.uikit.ButtonText2
 import ru.zhogin.app.uikit.Green
 import ru.zhogin.app.uikit.Grey1
@@ -47,75 +41,7 @@ import ru.zhogin.app.uikit.Title3
 import ru.zhogin.app.uikit.White
 
 @Composable
-internal fun VacanciesView(
-    listVacancies: List<Vacancy>,
-    showAll: Boolean,
-    onShowAllVacancy: () -> Unit,
-    showVacancyPage: (Vacancy) -> Unit,
-    showOrHideInFavourite: (Vacancy) -> Unit,
-) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 21.dp)
-    ) {
-        items(if (!showAll) 3 else listVacancies.size) { count ->
-            VacancyView(
-                vacancy = listVacancies[count],
-                showVacancyPage = {
-                    showVacancyPage(it)
-                },
-                showOrHideInFavourite = showOrHideInFavourite
-            )
-            Spacer(modifier = Modifier.height(if (showAll) 11.dp else 21.dp))
-        }
-        if (!showAll) {
-            item {
-                Spacer(modifier = Modifier.height(10.dp))
-                ShowAllVacancies(
-                    onShowAllVacancy = onShowAllVacancy,
-                    amount = listVacancies.size,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun ShowAllVacancies(
-    onShowAllVacancy: () -> Unit,
-    amount: Int,
-) {
-    Card(
-        shape = RoundedCornerShape(11.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Blue
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(
-                enabled = true,
-                onClick = onShowAllVacancy
-            )
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Spacer(modifier = Modifier.height(17.dp))
-            Text(
-                text = "Ещё $amount ${vacanciesRuEnding(amount)}",
-                style = MaterialTheme.typography.ButtonText1,
-                color = White,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(18.dp))
-        }
-    }
-}
-
-@Composable
-private fun VacancyView(
+internal fun VacancyView(
     vacancy: Vacancy,
     showVacancyPage: (Vacancy) -> Unit,
     showOrHideInFavourite: (Vacancy) -> Unit,
@@ -140,8 +66,8 @@ private fun VacancyView(
             contentAlignment = Alignment.TopEnd,
         ) {
             Icon(
-                painter = if (vacancy.isFavorite) painterResource(id = R.drawable.icon_favourite_filled)
-                else painterResource(id = R.drawable.icon_favourite_not_filled),
+                painter = if (vacancy.isFavorite) painterResource(id = ru.zhogin.app.search.R.drawable.icon_favourite_filled)
+                else painterResource(id = ru.zhogin.app.search.R.drawable.icon_favourite_not_filled),
                 contentDescription = "favourite",
                 modifier = Modifier
                     .size(32.dp)
@@ -162,8 +88,8 @@ private fun VacancyView(
                 Text(
                     text = stringResource(
                         R.string.now_looking_people,
-                        vacancy.lookingNumber,
-                        peopleRuEnding(vacancy.lookingNumber)
+                        vacancy.lookingNumber ?: "",
+                        peopleRuEnding(vacancy.lookingNumber ?: 0)
                     )
                     ,
                     style = MaterialTheme.typography.Text1,
@@ -181,7 +107,7 @@ private fun VacancyView(
                 Text(text = vacancy.company, style = MaterialTheme.typography.Text1)
                 Spacer(modifier = Modifier.width(11.dp))
                 Icon(
-                    painter = painterResource(id = R.drawable.icon_checked),
+                    painter = painterResource(id = ru.zhogin.app.search.R.drawable.icon_checked),
                     contentDescription = "checked",
                     modifier = Modifier
                         .size(21.dp)
@@ -194,7 +120,7 @@ private fun VacancyView(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.icon_exp),
+                    painter = painterResource(id = ru.zhogin.app.search.R.drawable.icon_exp),
                     contentDescription = "checked",
                     modifier = Modifier
                         .size(21.dp)
@@ -206,7 +132,7 @@ private fun VacancyView(
             }
             Spacer(modifier = Modifier.height(13.dp))
             Text(
-                text = stringResource(R.string.published_text) + convertData(vacancy.publishedDate) ,
+                text = stringResource(ru.zhogin.app.search.R.string.published_text) + convertData(vacancy.publishedDate) ,
                 style = MaterialTheme.typography.Text1,
                 color = Grey3
             )
@@ -220,7 +146,7 @@ private fun VacancyView(
                 )
             ) {
                 Text(
-                    text = stringResource(R.string.respond_text),
+                    text = stringResource(ru.zhogin.app.search.R.string.respond_text),
                     style = MaterialTheme.typography.ButtonText2
                 )
             }

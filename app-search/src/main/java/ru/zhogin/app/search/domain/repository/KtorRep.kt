@@ -1,4 +1,4 @@
-package ru.zhogin.app.search.domain
+package ru.zhogin.app.search.domain.repository
 
 
 import ru.zhogin.app.search.common.Resource

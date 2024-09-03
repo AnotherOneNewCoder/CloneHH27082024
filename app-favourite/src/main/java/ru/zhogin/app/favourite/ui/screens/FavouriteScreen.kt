@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.zhogin.app.favourite.R
-import ru.zhogin.app.favourite.ui.VacancyView
+import ru.zhogin.app.favourite.ui.components.VacancyView
 import ru.zhogin.app.favourite.ui.viewmodel.FavouriteViewModel
 import ru.zhogin.app.search.common.vacanciesRuEnding
 import ru.zhogin.app.search.domain.models.vacancy.Vacancy

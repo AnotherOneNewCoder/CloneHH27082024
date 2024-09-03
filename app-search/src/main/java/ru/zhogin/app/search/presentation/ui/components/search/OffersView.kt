@@ -1,4 +1,4 @@
-package ru.zhogin.app.search.presentation.ui.components
+package ru.zhogin.app.search.presentation.ui.components.search
 
 import android.content.Intent
 import android.net.Uri

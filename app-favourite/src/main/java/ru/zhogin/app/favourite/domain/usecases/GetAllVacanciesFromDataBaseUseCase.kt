@@ -1,5 +1,6 @@
-package ru.zhogin.app.favourite.domain
+package ru.zhogin.app.favourite.domain.usecases
 
+import ru.zhogin.app.favourite.domain.repository.FavouriteRepository
 import javax.inject.Inject
 
 class GetAllVacanciesFromDataBaseUseCase @Inject constructor(

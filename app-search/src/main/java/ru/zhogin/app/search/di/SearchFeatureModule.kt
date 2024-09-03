@@ -10,7 +10,7 @@ import io.ktor.client.HttpClient
 import ru.zhogin.app.search.data.KtorRepImpl
 import ru.zhogin.app.search.data.database.VacanciesAndOffersDatabase
 import ru.zhogin.app.search.data.network.AppHttpClient
-import ru.zhogin.app.search.domain.KtorRep
+import ru.zhogin.app.search.domain.repository.KtorRep
 import javax.inject.Singleton
 
 @Module
@@ -31,5 +31,3 @@ object SearchFeatureModule {
         return VacanciesAndOffersDatabase(context)
     }
 }
-
-//private const val BASE_URL = "https://drive.usercontent.google.com/"

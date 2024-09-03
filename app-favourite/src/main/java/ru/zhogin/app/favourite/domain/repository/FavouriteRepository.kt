@@ -1,4 +1,4 @@
-package ru.zhogin.app.favourite.domain
+package ru.zhogin.app.favourite.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -13,17 +13,6 @@ import javax.inject.Inject
 class FavouriteRepository @Inject constructor(
     private val database: VacanciesAndOffersDatabase,
 ) {
-//    fun getVacanciesFormDatabase() : Flow<RequestResult<List<Vacancy>>> {
-//        val dbRequest = database.vacancyDbo::getAllVacancies.asFlow()
-//            .map<List<VacancyDbo>, RequestResult<List<VacancyDbo>>> { RequestResult.Success(it) }
-//        val start = flowOf<RequestResult<List<VacancyDbo>>>(RequestResult.InProgress())
-//        return merge(start, dbRequest)
-//            .map { result ->
-//                result.map { vacancyDbos ->
-//                    vacancyDbos.map { it.toVacancy() }
-//                }
-//            }
-//    }
     fun observeAllFromDatabase() : Flow<RequestResult<List<Vacancy>>> {
         val dbRequest = database.vacancyDbo::observeAllVacanciesInFavouriteScreen
         return dbRequest.invoke().map<List<VacancyDbo>, RequestResult<List<VacancyDbo>>> {RequestResult.Success(it)}
