@@ -17,8 +17,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.zhogin.app.enterance.presentation.ui.navigation.model.NavigationEntranceScreen
-import ru.zhogin.app.enterance.presentation.ui.screens.FirstEntrance
-import ru.zhogin.app.enterance.presentation.ui.screens.SecondEntrance
+import ru.zhogin.app.enterance.presentation.ui.screens.FirstEntranceNew
+import ru.zhogin.app.enterance.presentation.ui.screens.SecondEntranceNew
 
 @Composable
 fun EntranceFeature(
@@ -52,13 +52,13 @@ fun EntranceFeature(
 
         }) {
         composable(NavigationEntranceScreen.FirstScreenEntrance.route) {
-            FirstEntrance(modifier = modifier, moveToSecondEntrance = {
+            FirstEntranceNew(modifier = modifier, moveToSecondEntrance = {
                 email = it
                 navController.navigate(NavigationEntranceScreen.SecondScreenEntrance.route)
             })
         }
         composable(NavigationEntranceScreen.SecondScreenEntrance.route) {
-            SecondEntrance(
+            SecondEntranceNew(
                 modifier = modifier,
                 email = email,
                 entranceDone = entranceDone
