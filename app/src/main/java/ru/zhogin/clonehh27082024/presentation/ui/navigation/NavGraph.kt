@@ -34,7 +34,6 @@ internal fun NavigationGraph(
     navController : NavHostController,
     paddingValues: PaddingValues,
     searchViewModel: SearchViewModel,
-//    serverReply: ServerReply,
     listOffers: List<Offer>?,
     listVacancies: List<Vacancy>,
 ) {

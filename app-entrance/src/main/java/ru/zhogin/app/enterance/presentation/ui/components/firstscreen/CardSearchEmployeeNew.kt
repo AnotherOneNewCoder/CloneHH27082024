@@ -65,5 +65,5 @@ internal fun CardSearchEmployeeNew() {
 @Composable
 @Preview
 fun CardSearchEmplNewPrew() {
-    CardSearchEmployee()
+    CardSearchEmployeeNew()
 }

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import ru.zhogin.app.profile.R
 import ru.zhogin.app.uikit.Black
-import ru.zhogin.app.uikit.Title1
+import ru.zhogin.app.uikit.Title1New
 
 @Composable
 fun ProfileScreen(
@@ -26,6 +26,6 @@ fun ProfileScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = stringResource(R.string.profile_screen),
-            style = MaterialTheme.typography.Title1)
+            style = MaterialTheme.typography.Title1New)
     }
 }
