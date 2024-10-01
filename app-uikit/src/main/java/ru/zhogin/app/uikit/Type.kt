@@ -132,3 +132,94 @@ val Typography.Number: TextStyle
             color = White
         )
     }
+val Typography.Title1New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 22.sp,
+            color = White
+        )
+    }
+
+val Typography.Title2New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp,
+            color = White
+        )
+    }
+val Typography.Title3New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp,
+            color = White
+        )
+    }
+val Typography.Title4New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+            color = White
+        )
+    }
+val Typography.Text1New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp,
+            color = White
+        )
+    }
+val Typography.ButtonText1New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 16.sp,
+            color = White
+        )
+    }
+val Typography.ButtonText2New: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp,
+            color = White
+        )
+    }
+val Typography.TabTextNew: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Normal,
+            fontSize = 10.sp,
+            color = White
+        )
+    }
+val Typography.NumberNew: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Normal,
+            fontSize = 9.sp,
+            color = White
+        )
+    }

@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.uikit.Black
-import ru.zhogin.app.uikit.Title1
+import ru.zhogin.app.uikit.Title1New
 
 @Composable
 internal fun ErrorBox(
@@ -33,7 +33,7 @@ internal fun ErrorBox(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Error...", style = MaterialTheme.typography.Title1)
+            Text(text = "Error...", style = MaterialTheme.typography.Title1New)
             Spacer(modifier = Modifier.height(21.dp))
 
         }

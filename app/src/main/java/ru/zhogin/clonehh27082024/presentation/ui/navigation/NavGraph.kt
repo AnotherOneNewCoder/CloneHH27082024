@@ -19,14 +19,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.zhogin.app.enterance.presentation.ui.navigation.EntranceFeature
-import ru.zhogin.app.favourite.ui.screens.FavouriteScreen
+import ru.zhogin.app.favourite.ui.screens.FavouriteScreenNew
 import ru.zhogin.app.messages.presentation.ui.screens.MessagesScreen
 import ru.zhogin.app.profile.presentation.ui.screens.ProfileScreen
 import ru.zhogin.app.responses.presentation.ui.screens.ResponsesScreen
 import ru.zhogin.app.search.domain.models.offer.Offer
 import ru.zhogin.app.search.domain.models.vacancy.Vacancy
-import ru.zhogin.app.search.presentation.ui.screens.SearchJobScreenTest
-import ru.zhogin.app.search.presentation.ui.screens.VacancyPage
+import ru.zhogin.app.search.presentation.ui.screens.SearchJobScreenNew
+import ru.zhogin.app.search.presentation.ui.screens.VacancyPageNew
 import ru.zhogin.app.search.presentation.viewmodel.SearchViewModel
 
 @Composable
@@ -74,7 +74,7 @@ internal fun NavigationGraph(
                 })
         }
         composable(NavigationScreens.SearchScreen.route) {
-            SearchJobScreenTest(
+            SearchJobScreenNew(
                 modifier = Modifier.padding(paddingValues),
                 listOffers = listOffers,
                 listVacancies = listVacancies,
@@ -88,7 +88,7 @@ internal fun NavigationGraph(
             )
         }
         composable(NavigationScreens.FavouriteScreen.route) {
-            FavouriteScreen(
+            FavouriteScreenNew(
                 modifier = Modifier.padding(paddingValues),
                 showVacancyPage = {
                     id = it.id
@@ -107,7 +107,7 @@ internal fun NavigationGraph(
             ProfileScreen(modifier = Modifier.padding(paddingValues))
         }
         composable(NavigationScreens.VacancyScreen.route) {
-            VacancyPage(
+            VacancyPageNew(
                 modifier = Modifier.padding(paddingValues),
                 vacancy = listVacancies.last { it.id == id },
                 onClickBack = {

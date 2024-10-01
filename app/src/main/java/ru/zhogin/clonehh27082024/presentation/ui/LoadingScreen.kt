@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Green
-import ru.zhogin.app.uikit.Title1
+import ru.zhogin.app.uikit.Title1New
 
 @Composable
 internal fun LoadingBox(
@@ -35,7 +35,7 @@ internal fun LoadingBox(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Loading...", style = MaterialTheme.typography.Title1)
+            Text(text = "Loading...", style = MaterialTheme.typography.Title1New)
             Spacer(modifier = Modifier.height(21.dp))
             CircularProgressIndicator(
                 color = Green

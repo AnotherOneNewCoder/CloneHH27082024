@@ -19,7 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.zhogin.app.uikit.Black
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.Grey4
-import ru.zhogin.app.uikit.TabText
+import ru.zhogin.app.uikit.TabTextNew
 import ru.zhogin.clonehh27082024.R
 
 @Composable
@@ -85,7 +85,7 @@ internal fun BottomBar(
                 label = {
                     Text(
                         text = item.title,
-                        style = MaterialTheme.typography.TabText,
+                        style = MaterialTheme.typography.TabTextNew,
                         softWrap = false,
                         overflow = TextOverflow.Visible,
                         color = if (currentRoute == item.route) Blue else Grey4,
