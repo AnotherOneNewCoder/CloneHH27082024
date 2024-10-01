@@ -17,14 +17,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.enterance.common.isValidEmail
-import ru.zhogin.app.enterance.presentation.ui.components.firstscreen.CardSearchEmployee
-import ru.zhogin.app.enterance.presentation.ui.components.firstscreen.CardSearchJob
-import ru.zhogin.app.enterance.presentation.ui.components.firstscreen.HardcoreTextEnter
+import ru.zhogin.app.enterance.presentation.ui.components.firstscreen.CardSearchEmployeeNew
+import ru.zhogin.app.enterance.presentation.ui.components.firstscreen.CardSearchJobNew
+import ru.zhogin.app.enterance.presentation.ui.components.firstscreen.HardcoreTextEnterNew
 import ru.zhogin.app.entrance.R
 import ru.zhogin.app.uikit.Black
 
 @Composable
-internal fun FirstEntrance(
+internal fun FirstEntranceNew(
     modifier: Modifier,
     moveToSecondEntrance: (String) -> Unit,
 ) {
@@ -43,8 +43,8 @@ internal fun FirstEntrance(
             .fillMaxSize()
             .background(Black)
     ) {
-        Spacer(modifier = Modifier.height(42.dp))
-        HardcoreTextEnter(
+        Spacer(modifier = Modifier.height(32.dp))
+        HardcoreTextEnterNew(
             text = stringResource(id = R.string.enter_in_lk)
         )
     }
@@ -55,7 +55,7 @@ internal fun FirstEntrance(
         contentAlignment = Alignment.Center
     ) {
         Column {
-            CardSearchJob(
+            CardSearchJobNew(
                 email = email,
                 changeEmail = {
                     email = it
@@ -71,8 +71,8 @@ internal fun FirstEntrance(
                 },
                 error = error
             )
-            Spacer(modifier = Modifier.height(21.dp))
-            CardSearchEmployee()
+            Spacer(modifier = Modifier.height(16.dp))
+            CardSearchEmployeeNew()
         }
     }
 }

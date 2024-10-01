@@ -15,8 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.zhogin.app.search.presentation.ui.state.StateVacancies
 import ru.zhogin.app.search.presentation.viewmodel.SearchViewModel
 import ru.zhogin.app.uikit.CloneHH27082024Theme
-import ru.zhogin.clonehh27082024.presentation.ui.ErrorBox
-import ru.zhogin.clonehh27082024.presentation.ui.LoadingBox
+import ru.zhogin.app.enterance.presentation.ui.screens.ErrorBox
+import ru.zhogin.app.enterance.presentation.ui.screens.LoadingBox
 import ru.zhogin.clonehh27082024.presentation.ui.bottomnavbar.BottomBar
 import ru.zhogin.clonehh27082024.presentation.ui.navigation.NavigationGraph
 import ru.zhogin.clonehh27082024.presentation.ui.navigation.NavigationScreens
@@ -28,12 +28,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CloneHH27082024Theme {
-               // val searchViewModel: SearchViewModel = hiltViewModel()
                 val searchViewModel: SearchViewModel = hiltViewModel()
-//                val serverReply = searchViewModel.stateServerReply.collectAsState()
-//                val counter = serverReply.value?.data?.vacancies?.filter {
-//                    it.isFavorite
-//                }?.size
                 val offers = searchViewModel.stateOffers.collectAsState()
                 val vacancies = searchViewModel.stateVacancies.collectAsState()
                 val counter = vacancies.value.vacancies?.filter {
@@ -80,13 +75,6 @@ class MainActivity : ComponentActivity() {
 
                         else -> ErrorBox(paddingValues = innerPadding)
                     }
-
-//                    serverReply.value?.data?.let {
-//                        NavigationGraph(
-//                            navController = navController, paddingValues = innerPadding,
-//                            searchViewModel = searchViewModel, serverReply = it
-//                        )
-//                    } ?: LoadingBox(paddingValues = innerPadding)
                 }
             }
         }

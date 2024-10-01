@@ -154,6 +154,7 @@ private fun OfferView(
                     color = Green,
                 )
             }
+            Spacer(modifier = Modifier.height(11.dp))
 
         }
     }
