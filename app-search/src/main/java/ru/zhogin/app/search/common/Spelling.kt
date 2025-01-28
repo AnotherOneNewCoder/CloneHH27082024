@@ -22,3 +22,13 @@ fun peopleRuEnding(amount: Int): String {
     else if (amount.toString().endsWith("4")) "человека"
     else "человек"
 }
+
+fun lookingRuEnding(amount: Int): String {
+    return if (amount.toString().endsWith("1")) "смотрит"
+    else "смотрят"
+}
+
+fun replyRuEnding(amount: Int): String {
+    return if (amount.toString().endsWith("1")) "откликнулся"
+    else "откликнулось"
+}

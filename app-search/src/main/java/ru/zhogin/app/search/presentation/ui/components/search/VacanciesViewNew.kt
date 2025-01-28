@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -59,9 +60,14 @@ internal fun VacanciesViewNew(
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
     ) {
-        items(if (!showAll) 3 else listVacancies.size) { count ->
+        items(
+            items = if (!showAll) listVacancies.take(3) else listVacancies,
+            key = {
+                it.id
+            }
+        ) { vacancy ->
             VacancyView(
-                vacancy = listVacancies[count],
+                vacancy = vacancy,
                 showVacancyPage = {
                     showVacancyPage(it)
                 },
@@ -69,6 +75,7 @@ internal fun VacanciesViewNew(
             )
             Spacer(modifier = Modifier.height(if (showAll) 8.dp else 16.dp))
         }
+
         if (!showAll) {
             item {
                 Spacer(modifier = Modifier.height(10.dp))

@@ -22,7 +22,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.search.R
+import ru.zhogin.app.search.common.lookingRuEnding
 import ru.zhogin.app.search.common.peopleRuEnding
+import ru.zhogin.app.search.common.replyRuEnding
 import ru.zhogin.app.uikit.DarkGreen
 import ru.zhogin.app.uikit.Green
 import ru.zhogin.app.uikit.Text1New
@@ -55,9 +57,10 @@ internal fun GreenBoxNew(
                 text = if (applied) stringResource(
                     R.string.people_repl,
                     number,
-                    peopleRuEnding(number)
+                    peopleRuEnding(number),
+                    replyRuEnding(number)
                 )
-                else stringResource(R.string.green_box_looking_ppl, number, peopleRuEnding(number)),
+                else stringResource(R.string.green_box_looking_ppl, number, peopleRuEnding(number), lookingRuEnding(number)),
                 style = MaterialTheme.typography.Text1New
             )
         }

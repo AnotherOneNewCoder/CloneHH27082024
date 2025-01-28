@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -73,17 +74,21 @@ internal fun FavouriteScreenNew(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }
-            vacanciesState.vacancies?.size?.let {
-                items(it) { count ->
+            vacanciesState.vacancies?.let { list ->
+                items(
+                    items = list,
+                    key = {
+                        it.id
+                    }
+                ) { vacancy ->
                     VacancyViewNew(
-                        vacancy = vacanciesState.vacancies!![count],
+                        vacancy = vacancy,
                         showVacancyPage = showVacancyPage,
-                        showOrHideInFavourite = { viewModel.showHideVacancy(vacanciesState.vacancies!![count]) }
-
+                        showOrHideInFavourite = {
+                            viewModel.showHideVacancy(vacancy)
+                        }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-
-
                 }
             }
         }
